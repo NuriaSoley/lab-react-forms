@@ -9,40 +9,52 @@ import studentsData from "./assets/students.json";
 function App() {
   const [students, setStudents] = useState(studentsData);
 
+  const [fullName, setFullName] = useState("")
+  const [image, setImage] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [program, setProgram] = useState("")
+  const [graduationYear, setGraduationYear] = useState(0)
+  const [graduated, setGraduated] = useState(false)
+
+
+  const handleSubmit = (event) =>{
+    event.preventDefault()
+  }
 
   return (
     <div className="App pt-20">
       <Navbar />
 
       {/* FORM */}
-      <form>
+      <form onSubmit ={handleSubmit}>
         <span>Add a Student</span>
         <div>
           <label>
             Full Name
-            <input name="fullName" type="text" placeholder="Full Name" />
+            <input name="fullName" value={fullName} type="text" placeholder="Full Name" />
           </label>
 
           <label>
             Profile Image
-            <input name="image" type="url" placeholder="Profile Image" />
+            <input name="image" value={image} type="url" placeholder="Profile Image" />
           </label>
 
           <label>
             Phone
-            <input name="phone" type="tel" placeholder="Phone" />
+            <input name="phone" value={phone} type="tel" placeholder="Phone" />
           </label>
 
           <label>
             Email
-            <input name="email" type="email" placeholder="Email" />
+            <input name="email" value={email} type="email" placeholder="Email" />
           </label>
         </div>
 
         <div>
           <label>
             Program
-            <select name="program">
+            <select name="program" value={program}>
               <option value="">-- None --</option>
               <option value="Web Dev">Web Dev</option>
               <option value="UXUI">UXUI</option>
@@ -60,12 +72,13 @@ function App() {
               maxLength={4}
               min={2023}
               max={2030}
+              value ={graduationYear}
             />
           </label>
 
           <label>
             Graduated
-            <input name="graduated" type="checkbox" />
+            <input name="graduated" checked={graduated} type="checkbox" />
           </label>
 
           <button type="submit">Add Student</button>
